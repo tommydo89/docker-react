@@ -1,0 +1,24 @@
+version: '3'
+services: # services = containers
+  web: 
+    build: 
+      context: . # path to the files/folders we want pulled for this image
+      dockerfile: Dockerfile.dev # path to the docker file
+    ports:
+      - "3000:3000" # map port 3000 on localhost to 3000 in the container
+    volumes:
+      - /app/node_modules # bookmark this folder in the container. do not map to local
+      - .:/app # map the /app directory in the container to the current directory
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+  tests:
+    stdin_open: true
+    build: 
+      context: . # path to the files/folders we want pulled for this image
+      dockerfile: Dockerfile.dev # path to the docker file
+    volumes:
+      - /app/node_modules # bookmark this folder in the container. do not map to local
+      - .:/app # map the /app directory in the container to the current directory
+    command: ["npm", "run", "test"]
+    environment:
+      - CHOKIDAR_USEPOLLING=true
