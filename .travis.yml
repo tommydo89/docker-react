@@ -13,7 +13,7 @@ deploy:
   provider: elasticbeanstalk # Travis comes preconfigured to deploy to a handful of providers 
   region: "us-east-2" # region that our app is hosted on. Can be found on web link
   app: "docker-react" # name of our app
-  env: "Dockerreact-env-1" # app env
+  env: "Dockerreact-env" # app env
   bucket_name: "elasticbeanstalk-us-east-2-443571617150" # automatically created when setting up EB. Found under S3
   bucket_path: "docker-react" # default is name of the app
   on:
